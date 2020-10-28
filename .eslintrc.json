@@ -1,3 +1,11 @@
-"rules": {
-  "no-param-reassign": 0
-};
+{
+  "extends": [
+    "plugin:vue/base"
+  ],
+  "rules": {
+    "comma-dangle": [
+      "error",
+      "never"
+    ]
+  }
+}

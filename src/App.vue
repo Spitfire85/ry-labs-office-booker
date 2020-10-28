@@ -21,30 +21,30 @@ export default {
   components: {
     BookingList,
     CreateBooking,
-    SetName,
+    SetName
   },
   data() {
     return {
       bookings: [{
         name: 'Matt Clark',
         floor: '2',
-        checkedIn: false,
+        checkedIn: false
       }, {
         name: 'Laura Studd',
         floor: '1',
-        checkedIn: true,
+        checkedIn: true
       }, {
         name: 'Filipa Rolo',
         floor: '3',
-        checkedIn: false,
-      }],
+        checkedIn: false
+      }]
     };
   },
   methods: {
     CreateBooking(newbooking) {
       this.bookings.push(newbooking);
       sweetalert('Success!', 'Booking successful', 'success');
-    },
-  },
+    }
+  }
 };
 </script>
