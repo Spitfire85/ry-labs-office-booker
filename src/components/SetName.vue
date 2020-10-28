@@ -6,9 +6,18 @@
     <div class='ui centered card' v-show="isCreating">
       <div class='content'>
         <div class='ui form'>
+          <h2>Hello, please enter your name and the floor you'll be using</h2>
+          <div class='field'>
+            <label>Name</label>
+            <input v-model="nameText" type='text'>
+          </div>
+          <div class='field'>
+            <label>Floor</label>
+            <input v-model="floorText" type='text'>
+          </div>
           <div class='ui two button attached buttons'>
             <button class='ui basic blue button' v-on:click="sendForm()">
-              Book
+              Ok
             </button>
             <button class='ui basic red button' v-on:click="closeForm">
               Cancel
@@ -24,6 +33,8 @@
 export default {
   data() {
     return {
+      nameText: '',
+      floorText: '',
       isCreating: false,
     };
   },
