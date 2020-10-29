@@ -7,6 +7,7 @@
       <div class='content'>
         <div class='ui form'>
           <h2>Hello, please enter your name and the floor you'll be using</h2>
+          <h3>{{ message }}</h3>
           <div class='field'>
             <label>Name</label>
             <input v-model="nameText" type='text'>
@@ -38,6 +39,11 @@ export default {
       isCreating: false
     };
   },
+  computed: {
+    message() {
+      return this.$store.state.name;
+    }
+  },
   methods: {
     openForm() {
       this.isCreating = true;
@@ -47,6 +53,7 @@ export default {
     },
     sendForm() {
       if (this.nameText.length > 0 && this.nameText.length > 0) {
+        this.$store.commit('SET_NAME', this.nameText);
         const name = this.nameText;
         const floor = this.floorText;
         this.$emit('create-booking', {
