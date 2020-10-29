@@ -35,7 +35,7 @@ export default {
     return {
       nameText: '',
       floorText: '',
-      isCreating: false,
+      isCreating: false
     };
   },
   methods: {
@@ -52,13 +52,13 @@ export default {
         this.$emit('create-booking', {
           name,
           floor,
-          checkIn: false,
+          checkIn: false
         });
         this.nameText = '';
         this.floorText = '';
         this.isCreating = false;
       }
-    },
-  },
+    }
+  }
 };
 </script>

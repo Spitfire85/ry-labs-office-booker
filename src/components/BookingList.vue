@@ -13,7 +13,7 @@ import Booking from './Booking';
 export default {
   props: ['bookings'],
   components: {
-    Booking,
+    Booking
   },
   methods: {
     deleteBooking(booking) {
@@ -24,7 +24,7 @@ export default {
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
         confirmButtonText: 'Yes, delete it!',
-        closeOnConfirm: false,
+        closeOnConfirm: false
       },
       () => {
         const bookingIndex = this.bookings.indexOf(booking);
@@ -36,8 +36,8 @@ export default {
       const bookingIndex = this.bookings.indexOf(booking);
       this.bookings[bookingIndex].checkedIn = true;
       sweetalert('Success!', 'Checked in!', 'success');
-    },
-  },
+    }
+  }
 };
 </script>
 
