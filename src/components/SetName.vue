@@ -1,7 +1,8 @@
 <template>
   <div class='ui basic content center aligned segment'>
     <button class='ui basic button icon' v-on:click="openForm" v-show="!isCreating">
-      <i class='plus icon'></i>
+      Change your name and floor
+      <i class='edit icon'></i>
     </button>
     <div class='ui centered card' v-show="isCreating">
       <div class='content'>
@@ -42,9 +43,6 @@ export default {
   computed: {
     savedName() {
       return this.$store.state.name;
-    },
-    savedFloor() {
-      return this.$store.state.floor;
     }
   },
   methods: {

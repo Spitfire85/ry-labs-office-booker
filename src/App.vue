@@ -2,7 +2,7 @@
   <div id="app">
     <div class='ui three column centered grid'>
       <div class='column'>
-        <set-name v-on:create-booking="SetName"></set-name>
+        <set-name></set-name>
         <booking-list v-bind:bookings="bookings"></booking-list>
         <create-booking v-on:create-booking="CreateBooking"></create-booking>
       </div>
@@ -12,16 +12,16 @@
 
 <script>
 import sweetalert from 'sweetalert';
-import BookingList from './components/BookingList';
 import SetName from './components/SetName';
+import BookingList from './components/BookingList';
 import CreateBooking from './components/CreateBooking';
 
 export default {
   name: 'app',
   components: {
+    SetName,
     BookingList,
-    CreateBooking,
-    SetName
+    CreateBooking    
   },
   data() {
     return {

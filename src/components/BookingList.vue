@@ -3,7 +3,7 @@
     <h1>Hello {{ this.$store.state.name }}</h1>
     <p class="tasks">Checked in: {{bookings.filter(booking => {return booking.checkedIn === true}).length}}</p>
     <p class="tasks">Non checked in: {{bookings.filter(booking => {return booking.checkedIn === false}).length}}</p>
-    <Booking v-on:delete-booking="deleteBooking" v-on:complete-booking="completeBooking" v-for="booking in bookings" :booking.sync="booking"></Booking>
+    <Booking v-on:delete-booking="deleteBooking" v-on:complete-booking="completeBooking"  v-for="booking in bookings" :booking.sync="booking" ></Booking>
   </div>
 </template>
 
