@@ -5,12 +5,15 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    name: 'Hello there',
-    count: 0
+    name: '',
+    floor: ''
   },
   mutations: {
     SET_NAME(state, payload) {
       state.name = payload;
+    },
+    SET_FLOOR(state, payload) {
+      state.floor = payload;
     }
   },
   actions: {

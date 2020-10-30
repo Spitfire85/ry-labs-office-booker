@@ -1,5 +1,5 @@
 <template>
-  <div class='ui centered card'>
+  <div class='ui centered card'>    
     <div class="content" v-show="!isEditing">
       <div class='header'>
           {{ booking.name }}
@@ -11,7 +11,7 @@
           <span class='right floated edit icon' v-on:click="showForm">
           <i class='edit icon'></i>
         </span>
-        <span class='right floated trash icon' v-on:click="deletebooking(booking)">
+        <span class='right floated trash icon' v-on:click="deleteBooking(booking)">
           <i class='trash icon'></i>
         </span>
       </div>
@@ -47,14 +47,14 @@
     props: ['booking'],
     data() {
       return {
-        isEditing: false,
+        isEditing: false
       };
     },
     methods: {
       completeBooking(booking) {
         this.$emit('complete-booking', booking);
       },
-      deletebooking(booking) {
+      deleteBooking(booking) {
         this.$emit('delete-booking', booking);
       },
       showForm() {
@@ -62,7 +62,7 @@
       },
       hideForm() {
         this.isEditing = false;
-      },
-    },
+      }
+    }
   };
 </script>
