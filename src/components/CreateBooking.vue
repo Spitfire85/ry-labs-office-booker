@@ -11,13 +11,15 @@
 export default {
   methods: {
     sendForm() {
-      const name = this.$store.state.name;
+      const nameFirst = this.$store.state.nameFirst;
+      const nameLast = this.$store.state.nameLast;
       const floor = this.$store.state.floor;
-      if (name && floor !== '') {
+      if (nameFirst && nameLast && floor !== '') {
         this.$emit('create-booking', {
-          name,
+          nameFirst,
+          nameLast,
           floor,
-          checkIn: false
+          checkedIn: false
         });
       }      
     }

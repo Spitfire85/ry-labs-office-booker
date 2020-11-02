@@ -2,7 +2,7 @@
   <div class='ui centered card'>    
     <div class="content" v-show="!isEditing">
       <div class='header'>
-          {{ booking.name }}
+          {{ booking.nameFirst }} {{ booking.nameLast }}
       </div>
       <div class='meta'>
           Floor {{ booking.floor }}
@@ -19,8 +19,12 @@
     <div class="content" v-show="isEditing">
       <div class='ui form'>
         <div class='field'>
-          <label>Name</label>
-          <input type='text' v-model="booking.name" >
+          <label>First Name</label>
+          <input type='text' v-model="booking.nameFirst" >
+        </div>
+        <div class='field'>
+          <label>Last Name</label>
+          <input type='text' v-model="booking.nameLast" >
         </div>
         <div class='field'>
           <label>Floor</label>

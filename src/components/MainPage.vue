@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Hello {{ this.$store.state.name }}</h1>
+    <h1>Hello {{ this.$store.state.nameFirst }}</h1>
     <p class="tasks">Checked in: {{bookings.filter(booking => {return booking.checkedIn === true}).length}}</p>
     <p class="tasks">Non checked in: {{bookings.filter(booking => {return booking.checkedIn === false}).length}}</p>
     <Booking v-on:delete-booking="deleteBooking" v-on:complete-booking="completeBooking"  v-for="booking in bookings" :booking.sync="booking" ></Booking>
@@ -36,17 +36,15 @@ export default {
       const bookingIndex = this.bookings.indexOf(booking);
       this.bookings[bookingIndex].checkedIn = true;
       sweetalert('Success!', 'Checked in!', 'success');
-    },
-    savedName() {
-      return this.$store.state.name;
     }
   }
 };
 </script>
 
 <style scoped>
-p.tasks {
-  text-align: center;
-}
+  p.tasks,
+  h1 {
+    text-align: center;
+  }
 </style>
 

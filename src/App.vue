@@ -1,9 +1,9 @@
 <template>
   <div id="app">
+    <set-name></set-name>
     <div class='ui three column centered grid'>
-      <div class='column'>
-        <set-name></set-name>
-        <booking-list v-bind:bookings="bookings"></booking-list>
+      <div class='column'>        
+        <main-page v-bind:bookings="bookings"></main-page>
         <create-booking v-on:create-booking="CreateBooking"></create-booking>
       </div>
     </div>
@@ -13,28 +13,31 @@
 <script>
 import sweetalert from 'sweetalert';
 import SetName from './components/SetName';
-import BookingList from './components/BookingList';
+import MainPage from './components/MainPage';
 import CreateBooking from './components/CreateBooking';
 
 export default {
   name: 'app',
   components: {
     SetName,
-    BookingList,
+    MainPage,
     CreateBooking    
   },
   data() {
     return {
       bookings: [{
-        name: 'Matt Clark',
+        nameFirst: 'Matt',
+        nameLast: 'Clark',
         floor: '2',
         checkedIn: false
       }, {
-        name: 'Laura Studd',
+        nameFirst: 'Laura',
+        nameLast: 'Studd',
         floor: '1',
         checkedIn: true
       }, {
-        name: 'Filipa Rolo',
+        nameFirst: 'Filipa',
+        nameLast: 'Rolo',
         floor: '3',
         checkedIn: false
       }]
