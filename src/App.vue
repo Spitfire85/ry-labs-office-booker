@@ -4,7 +4,7 @@
     <div class='ui three column centered grid'>
       <div class='column'>        
         <main-page v-bind:bookings="bookings"></main-page>
-        <create-booking v-on:create-booking="CreateBooking"></create-booking>
+        <create-booking v-bind:bookings="bookings" v-on:create-booking="CreateBooking"></create-booking>
       </div>
     </div>
   </div>
