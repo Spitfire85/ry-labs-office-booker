@@ -6,16 +6,16 @@
 
       <div class="booking__day">
         <h2>Monday</h2>
-        <p class="bookings">Checked in: {{bookings.filter(booking => {return booking.checkedIn === true}).length}} / {{ bookings.length }} (Max 20)</p>
-        <Booking v-on:delete-booking="deleteBooking" v-on:complete-booking="completeBooking"  v-for="booking in bookings" :booking.sync="booking" ></Booking>
-        <create-booking v-bind:bookings="bookings" v-on:create-booking="CreateBooking"></create-booking>
+        <p class="booking__checked-in">Checked in: {{bookings.filter(booking => {return booking.checkedIn === true}).length}} / {{ bookings.length }} (Max 20)</p>
+        <create-booking v-bind:bookings="bookings" v-on:create-booking="createBooking"></create-booking>
+        <Booking v-on:delete-booking="deleteBooking" v-on:complete-booking="completeBooking"  v-for="booking in bookings" :booking.sync="booking" ></Booking>        
       </div>
 
       <div class="booking__day">
         <h2>Tuesday</h2>
-        <p class="bookings">Checked in: {{bookings.filter(booking => {return booking.checkedIn === true}).length}} / {{ bookings.length }} (Max 20)</p>
-        <Booking v-on:delete-booking="deleteBooking" v-on:complete-booking="completeBooking"  v-for="booking in bookings" :booking.sync="booking" ></Booking>
-        <create-booking v-bind:bookings="bookings" v-on:create-booking="CreateBooking"></create-booking>
+        <p class="booking__checked-in">Checked in: {{bookingsTuesday.filter(bookingTuesday => {return bookingTuesday.checkedIn === true}).length}} / {{ bookingsTuesday.length }} (Max 20)</p>
+        <create-booking v-bind:bookingsTuesday="bookingsTuesday" v-on:create-booking="createBooking"></create-booking>
+        <Booking v-on:delete-booking="deleteBooking" v-on:complete-booking="completeBooking"  v-for="bookingTuesday in bookingsTuesday" :booking.sync="bookingTuesday" ></Booking>        
       </div>
 
     </div>  
@@ -29,7 +29,6 @@ import Booking from './Booking';
 import CreateBooking from './CreateBooking';
 
 export default {
-  props: ['bookings'],
   components: {
     Booking,
     CreateBooking
@@ -55,16 +54,42 @@ export default {
       this.bookings[bookingIndex].checkedIn = true;
       sweetalert('Success!', 'Checked in!', 'success');
     },
-    CreateBooking(newbooking) {
+    createBooking(newbooking) {
       this.bookings.push(newbooking);
       sweetalert('Success!', 'Booking successful', 'success');
+    }
+  },
+  data() {
+    return {
+      bookings: [{
+        nameFirst: 'Matt',
+        nameLast: 'Clark',
+        floor: '2',
+        checkedIn: false
+      }, {
+        nameFirst: 'Laura',
+        nameLast: 'Studd',
+        floor: '1',
+        checkedIn: true
+      }, {
+        nameFirst: 'Filipa',
+        nameLast: 'Rolo',
+        floor: '3',
+        checkedIn: false
+      }],
+      bookingsTuesday: [{
+        nameFirst: 'John',
+        nameLast: 'Sheard',
+        floor: '2',
+        checkedIn: false
+      }]
     }
   }
 };
 </script>
 
 <style scoped>
-  p.bookings,
+  .booking__checked-in,
   h1,
   h2 {
     text-align: center;

@@ -3,7 +3,7 @@
     <set-name></set-name>
     <div class='ui three column centered grid'>
       <div class='column'>        
-        <main-page v-bind:bookings="bookings"></main-page>        
+        <main-page></main-page>        
       </div>
     </div>
   </div>
@@ -19,26 +19,6 @@ export default {
   components: {
     SetName,
     MainPage  
-  },
-  data() {
-    return {
-      bookings: [{
-        nameFirst: 'Matt',
-        nameLast: 'Clark',
-        floor: '2',
-        checkedIn: false
-      }, {
-        nameFirst: 'Laura',
-        nameLast: 'Studd',
-        floor: '1',
-        checkedIn: true
-      }, {
-        nameFirst: 'Filipa',
-        nameLast: 'Rolo',
-        floor: '3',
-        checkedIn: false
-      }]
-    };
-  }
+  }  
 };
 </script>
