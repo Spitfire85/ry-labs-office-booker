@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import sweetalert from 'sweetalert';
 export default {
   data() {
     return {
@@ -56,7 +57,7 @@ export default {
       this.isCreating = false;
     },
     sendForm() {
-      if (this.nameFirstText.length > 0 && this.nameLastText.length > 0) {
+      if (this.nameFirstText.length > 0 && this.nameLastText.length > 0 && this.floorText.length > 0) {
         this.$store.commit('SET_NAME_FIRST', this.nameFirstText);
         this.$store.commit('SET_NAME_LAST', this.nameLastText);
         this.$store.commit('SET_FLOOR', this.floorText);
@@ -70,6 +71,8 @@ export default {
           checkIn: false
         });
         this.isCreating = false;
+      } else {
+        sweetalert('Please fill in all fields', '', 'error');
       }
     }
   }

@@ -16,7 +16,7 @@ export default {
       const nameFirst = this.$store.state.nameFirst;
       const nameLast = this.$store.state.nameLast;
       const floor = this.$store.state.floor;
-      if (this.bookings.length <= 5) {
+      if (this.bookings.length <= 4) {
         if (nameFirst && nameLast && floor !== '') {
           this.$emit('create-booking', {
             nameFirst,

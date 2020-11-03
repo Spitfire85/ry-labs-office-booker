@@ -3,8 +3,7 @@
     <set-name></set-name>
     <div class='ui three column centered grid'>
       <div class='column'>        
-        <main-page v-bind:bookings="bookings"></main-page>
-        <create-booking v-bind:bookings="bookings" v-on:create-booking="CreateBooking"></create-booking>
+        <main-page v-bind:bookings="bookings"></main-page>        
       </div>
     </div>
   </div>
@@ -14,14 +13,12 @@
 import sweetalert from 'sweetalert';
 import SetName from './components/SetName';
 import MainPage from './components/MainPage';
-import CreateBooking from './components/CreateBooking';
 
 export default {
   name: 'app',
   components: {
     SetName,
-    MainPage,
-    CreateBooking    
+    MainPage  
   },
   data() {
     return {
@@ -42,12 +39,6 @@ export default {
         checkedIn: false
       }]
     };
-  },
-  methods: {
-    CreateBooking(newbooking) {
-      this.bookings.push(newbooking);
-      sweetalert('Success!', 'Booking successful', 'success');
-    }
   }
 };
 </script>
