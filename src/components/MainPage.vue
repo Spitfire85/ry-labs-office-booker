@@ -14,7 +14,55 @@
             Create booking
           </button>    
         </div>
-        <Booking v-on:delete-booking="deleteBooking, index" v-on:complete-booking="completeBooking"  v-for="booking in bookingDay.people" :booking.sync="booking" ></Booking>        
+
+        <!-- <Booking v-on:delete-booking="deleteBooking, index" v-on:complete-booking="completeBooking"  v-for="booking in bookingDay.people" :booking.sync="booking" ></Booking>  -->
+
+        <div class='ui centered card' v-for="(person, personIndex) in bookingDay.people" :key="personIndex">    
+          <!-- <div class="content" v-show="!isEditing"> -->
+          <div class="content">
+            <div class='header'>
+                {{ person.nameFirst }} {{ person.nameLast }}
+            </div>
+            <div class='meta'>
+                Floor {{ person.floor }}
+            </div>
+            <div class='extra content'>
+                <!-- <span class='right floated edit icon' v-on:click="showForm">
+                  <i class='edit icon'></i>
+                </span> -->
+              <span class='right floated trash icon' v-on:click="deleteBooking(index, personIndex)">
+                <i class='trash icon'></i>
+              </span>
+            </div>
+          </div>
+          <!-- <div class="content" v-show="isEditing">
+            <div class='ui form'>
+              <div class='field'>
+                <label>First Name</label>
+                <input type='text' v-model="booking.nameFirst" >
+              </div>
+              <div class='field'>
+                <label>Last Name</label>
+                <input type='text' v-model="booking.nameLast" >
+              </div>
+              <div class='field'>
+                <label>Floor</label>
+                <input type='text' v-model="booking.floor" >
+              </div>
+              <div class='ui two button attached buttons'>
+                <button class='ui basic blue button' v-on:click="hideForm">
+                  Close X
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class='ui bottom attached green basic button' v-show="!isEditing &&booking.checkedIn" disabled>
+              Checked in
+          </div>
+          <div class='ui bottom attached red basic button' v-on:click="completeBooking(booking)" v-show="!isEditing && !booking.checkedIn">
+              Not checked in yet
+          </div> -->
+        </div>       
       </div>
 
     </div>  
@@ -24,31 +72,25 @@
 
 <script type = "text/javascript" >
 import sweetalert from 'sweetalert';
-import Booking from './Booking';
 
 export default {
-  components: {
-    Booking
-  },
   methods: {
-    deleteBooking(booking, index) {
-      console.log(booking, index);
+    deleteBooking(index, personIndex) {
       sweetalert({
         title: 'Are you sure?',
         text: 'This booking will be permanently deleted!',
-        type: 'warning',
+        icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#DD6B55',
         confirmButtonText: 'Yes, delete it!',
         closeOnConfirm: false
-      }).then(() => {
-        const bookingIndex = this.bookings.indexOf(booking);
-        this.bookings.splice(bookingIndex, 1);
+      }).then(() => {       
+        this.bookings[index].people.splice(personIndex, 1);
         sweetalert('Deleted!', 'Your booking has been deleted.', 'success');
       });
     },
     completeBooking(booking) {
-      const bookingIndex = this.bookings.indexOf(booking);
+      const bookingIndex = this.bookings.indexOf(1);
       this.bookings[bookingIndex].checkedIn = true;
       sweetalert('Success!', 'Checked in!', 'success');
     },
