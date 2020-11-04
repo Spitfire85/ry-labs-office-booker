@@ -5,7 +5,7 @@
     <div class="booking__wrapper">
 
       <div class="booking__day" v-for="(bookingDay, index) in bookings" :key="index">
-        <h2>{{ bookingDay.day }} {{ index }}</h2>
+        <h2>{{ bookingDay.day }}</h2>
         <p class="booking__checked-in">Checked in: {{bookingDay.people.filter(booking => {return bookingDay.people.checkedIn === true}).length}} / {{ bookingDay.people.length }} (Max 20)</p>
         
         <div class='ui basic content center aligned segment'>
@@ -18,8 +18,8 @@
         <!-- <Booking v-on:delete-booking="deleteBooking, index" v-on:complete-booking="completeBooking"  v-for="booking in bookingDay.people" :booking.sync="booking" ></Booking>  -->
 
         <div class='ui centered card' v-for="(person, personIndex) in bookingDay.people" :key="personIndex">    
-          <!-- <div class="content" v-show="!isEditing"> -->
-          <div class="content">
+          <div class="content" v-show="!person.isEditing">
+          <!-- <div class="content"> -->
             <div class='header'>
                 {{ person.nameFirst }} {{ person.nameLast }}
             </div>
@@ -27,41 +27,41 @@
                 Floor {{ person.floor }}
             </div>
             <div class='extra content'>
-                <!-- <span class='right floated edit icon' v-on:click="showForm">
+                <span class='right floated edit icon' v-on:click="editBooking(index, personIndex);">
                   <i class='edit icon'></i>
-                </span> -->
+                </span>
               <span class='right floated trash icon' v-on:click="deleteBooking(index, personIndex)">
                 <i class='trash icon'></i>
               </span>
             </div>
           </div>
-          <!-- <div class="content" v-show="isEditing">
+          <div class="content" v-show="person.isEditing">
             <div class='ui form'>
               <div class='field'>
                 <label>First Name</label>
-                <input type='text' v-model="booking.nameFirst" >
+                <input type='text' v-model="person.nameFirst" >
               </div>
               <div class='field'>
                 <label>Last Name</label>
-                <input type='text' v-model="booking.nameLast" >
+                <input type='text' v-model="person.nameLast" >
               </div>
               <div class='field'>
                 <label>Floor</label>
-                <input type='text' v-model="booking.floor" >
+                <input type='text' v-model="person.floor">
               </div>
               <div class='ui two button attached buttons'>
-                <button class='ui basic blue button' v-on:click="hideForm">
+                <button class='ui basic blue button' v-on:click="hideForm(index, personIndex)">
                   Close X
                 </button>
               </div>
             </div>
           </div>
-          <div class='ui bottom attached green basic button' v-show="!isEditing &&booking.checkedIn" disabled>
+          <div class='ui bottom attached green basic button' v-show="!person.isEditing && person.checkedIn" disabled>
               Checked in
           </div>
-          <div class='ui bottom attached red basic button' v-on:click="completeBooking(booking)" v-show="!isEditing && !booking.checkedIn">
+          <div class='ui bottom attached red basic button' v-on:click="checkIn(index, personIndex)" v-show="!person.isEditing && !person.checkedIn">
               Not checked in yet
-          </div> -->
+          </div>
         </div>       
       </div>
 
@@ -89,9 +89,11 @@ export default {
         sweetalert('Deleted!', 'Your booking has been deleted.', 'success');
       });
     },
-    completeBooking(booking) {
-      const bookingIndex = this.bookings.indexOf(1);
-      this.bookings[bookingIndex].checkedIn = true;
+    editBooking(index, personIndex) {
+      this.bookings[index].people[personIndex].isEditing = true;
+    },
+    checkIn(index, personIndex) {
+      this.bookings[index].people[personIndex].checkedIn = true;
       sweetalert('Success!', 'Checked in!', 'success');
     },
     createBooking(index) {
@@ -102,6 +104,7 @@ export default {
         nameFirst,
         nameLast,
         floor,
+        isEditing: false,
         checkedIn: false
       }
 
@@ -113,27 +116,33 @@ export default {
       } else {
         sweetalert('Unable to book that day', 'That day has reached the maximum of 20 people!', 'error');
       }
+    },
+    hideForm(index, personIndex) {
+      this.bookings[index].people[personIndex].isEditing = false;
     }
   },
   data() {
-    return {
+    return {      
       bookings: [{
         id: 0,
-        day: 'Monday',
+        day: 'Monday',        
         people: [{
           nameFirst: 'Matt',
           nameLast: 'Clark',
           floor: '2',
+          isEditing: false,
           checkedIn: false
         }, {
           nameFirst: 'Laura',
           nameLast: 'Studd',
           floor: '1',
+          isEditing: false,
           checkedIn: true
         }, {
           nameFirst: 'Filipa',
           nameLast: 'Rolo',
           floor: '3',
+          isEditing: false,
           checkedIn: false
         }]
       },{
@@ -143,6 +152,7 @@ export default {
           nameFirst: 'John',
           nameLast: 'Sheard',
           floor: '2',
+          isEditing: false,
           checkedIn: false
         }]
       }]
