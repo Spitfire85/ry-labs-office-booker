@@ -11,7 +11,7 @@
           <span class='right floated edit icon' v-on:click="showForm">
           <i class='edit icon'></i>
         </span>
-        <span class='right floated trash icon' v-on:click="deleteBooking(booking)">
+        <span class='right floated trash icon' v-on:click="deleteBooking(booking, index)">
           <i class='trash icon'></i>
         </span>
       </div>
@@ -59,7 +59,7 @@
         this.$emit('complete-booking', booking);
       },
       deleteBooking(booking) {
-        this.$emit('delete-booking', booking);
+        this.$emit('delete-booking', booking, index);
       },
       showForm() {
         this.isEditing = true;
