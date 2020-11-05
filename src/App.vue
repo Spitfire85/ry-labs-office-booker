@@ -22,3 +22,49 @@ export default {
   }
 };
 </script>
+
+<style> 
+  @font-face {
+    font-family: 'Realist Bold';
+    src: url('/fonts/realist-bold.woff');
+  }
+
+  @font-face {
+    font-family: 'Realist Light';
+    src: url('/fonts/realist-light.woff');
+  }
+
+  @font-face {
+    font-family: 'Realist Medium';
+    src: url('/fonts/realist-medium.woff');
+  }
+
+  @font-face {
+    font-family: 'Realist Regular';
+    src: url('/fonts/realist-regular.woff');
+  }
+
+  @font-face {
+    font-family: 'Realist Thin';
+    src: url('/fonts/realist-thin.woff');
+  }
+
+  @font-face {
+    font-family: 'icons';
+    src: url('/fonts/icons.woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  body * {
+    font-family: 'Realist Regular' !important;    
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-weight: 400;
+  }
+</style>
