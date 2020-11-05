@@ -4,7 +4,7 @@
         Change your name and floor
         <i class='edit icon'></i>
     </button>
-    <div class="modal-bg" v-show="isCreating">
+    <div class="modal-bg" v-show="isCreating" v-if="!checkLocalStorage()">
       <div class='ui basic content aligned segment'>      
         <div class='ui centered card'>
           <div class='content'>
@@ -22,10 +22,11 @@
                 <label>Floor</label>
                 <input v-model="floorText" type='text'>
               </div>
-              <div class='ui two button attached buttons'>
+              <div class='ui two button attached buttons'>                
                 <button class='ui basic blue button' v-on:click="sendForm()">
                   Ok
                 </button>
+
                 <button class='ui basic red button' v-on:click="closeForm">
                   Cancel
                 </button>
@@ -61,20 +62,33 @@ export default {
         this.$store.commit('SET_NAME_FIRST', this.nameFirstText);
         this.$store.commit('SET_NAME_LAST', this.nameLastText);
         this.$store.commit('SET_FLOOR', this.floorText);
-        const nameFirst = this.nameFirstText;
-        const nameLast = this.nameLastText;
-        const floor = this.floorText;
-        this.$emit('create-booking', {
-          nameFirst,
-          nameLast,
-          floor,
-          checkIn: false
-        });
+        
+        localStorage.setItem('SET_NAME_FIRST', this.nameFirstText);
+        localStorage.setItem('SET_NAME_LAST', this.nameLastText);
+        localStorage.setItem('SET_FLOOR', this.floorText);
         this.isCreating = false;
       } else {
         sweetalert('Please fill in all fields', '', 'error');
       }
+    },
+    checkLocalStorage() {
+      console.log('checkLocalStorage');
+      return localStorage.getItem('SET_NAME_FIRST');      
+    },
+    addLocaltoStorage() {
+      if (localStorage.getItem('SET_NAME_FIRST')) {
+        const nameFirstText = localStorage.getItem('SET_NAME_FIRST');
+        const nameLastText = localStorage.getItem('SET_NAME_LAST');
+        const floorText = localStorage.getItem('SET_FLOOR');
+
+        this.$store.commit('SET_NAME_FIRST', nameFirstText);
+        this.$store.commit('SET_NAME_LAST', nameLastText);
+        this.$store.commit('SET_FLOOR', floorText);
+      }
     }
+  },
+  mounted(){
+    this.addLocaltoStorage();
   }
 };
 </script>
