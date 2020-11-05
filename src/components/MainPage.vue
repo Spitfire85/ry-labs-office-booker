@@ -6,8 +6,8 @@
 
       <div class="booking__day" v-for="(bookingDay, index) in bookings" :key="index">
         <h2>{{ bookingDay.day }}</h2>
-        <p class="booking__checked-in">Checked in: {{bookingDay.people.filter(booking => {return bookingDay.people.checkedIn === true}).length}} / {{ bookingDay.people.length }} (Max 20)</p>
-        
+        <p class="booking__checked-in">Checked in: {{ bookingDay.people.filter(booking => { return booking.checkedIn === true}).length }} / {{ bookingDay.people.length }} (Max 20)</p>
+
         <div class='ui basic content center aligned segment'>
           <button class='ui basic button icon' v-on:click="createBooking(index)">
             <i class='plus icon'></i>
