@@ -9,7 +9,7 @@
 
       <div class="booking__day" v-for="(bookingDay, index) in bookings" :key="index">
         <h2>{{ bookingDay.day }}</h2>
-        <p class="booking__checked-in">Checked in: {{ bookingDay.people.filter(booking => { return booking.checkedIn === true}).length }} / {{ bookingDay.people.length }} (Max 20)</p>
+        <p class="booking__checked-in">Checked in: <strong>{{ bookingDay.people.filter(booking => { return booking.checkedIn === true}).length }} / {{ bookingDay.people.length }}</strong> (Max 20)</p>
 
         <div class='ui basic content center aligned'>
           <button class='ui basic button icon button--check-in' v-on:click="createBooking(index)">
@@ -209,7 +209,9 @@ export default {
   }
 
   .button {
+    bottom: -1px;    
     border-radius: 0 !important;
+    position: relative;
   }
 
   .ui .button.button--check-in {
