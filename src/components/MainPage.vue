@@ -139,7 +139,7 @@ export default {
           nameLast: 'Studd',
           floor: '1',
           isEditing: false,
-          checkedIn: true
+          checkedIn: false
         }, {
           nameFirst: 'Filipa',
           nameLast: 'Rolo',
@@ -159,26 +159,32 @@ export default {
       },{
         day: 'Wednesday',
         people: [{
-          nameFirst: 'John',
-          nameLast: 'Sheard',
-          floor: '2',
+          nameFirst: 'Carlos',
+          nameLast: 'Rey',
+          floor: '1',
           isEditing: false,
           checkedIn: false
         }]
       },{
         day: 'Thursday',
         people: [{
-          nameFirst: 'John',
-          nameLast: 'Sheard',
-          floor: '2',
+          nameFirst: 'George',
+          nameLast: 'Butler',
+          floor: '3',
+          isEditing: false,
+          checkedIn: false
+        },{
+          nameFirst: 'Ash ',
+          nameLast: 'Amrite',
+          floor: '3',
           isEditing: false,
           checkedIn: false
         }]
       },{
         day: 'Friday',
         people: [{
-          nameFirst: 'John',
-          nameLast: 'Sheard',
+          nameFirst: 'Jess',
+          nameLast: 'Bullman',
           floor: '2',
           isEditing: false,
           checkedIn: false

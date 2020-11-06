@@ -81,7 +81,6 @@ export default {
       }
     },
     checkLocalStorage() {
-      console.log('checkLocalStorage');
       return localStorage.getItem('SET_NAME_FIRST');      
     },
     addLocaltoStorage() {
