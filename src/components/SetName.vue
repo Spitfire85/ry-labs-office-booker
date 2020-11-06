@@ -143,8 +143,13 @@ export default {
     background-color: transparent !important;
     border-bottom: 1px solid #fff !important;
     border-radius: 0 !important;
+    color: #fff !important;
     margin-bottom: 20px !important;
     padding-left: 0 !important;
+  }
+
+  .modal-bg input:focus {
+    background-color: transparent !important;
   }
 
   .modal-bg input::placeholder {

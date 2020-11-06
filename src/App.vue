@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <set-name></set-name>
-    <div class='ui three column centered grid'>
+    <div class='ui column grid'>
       <div class='column'>        
         <main-page></main-page>        
       </div>
@@ -56,7 +56,14 @@ export default {
     font-style: normal;
   }
 
-  body * {
+  h1,
+  h2,
+  h3,
+  h4,
+  ul,
+  ol,
+  input,
+  p {
     font-family: 'Realist Regular' !important;    
   }
 
@@ -66,5 +73,9 @@ export default {
   h4,
   h5 {
     font-weight: 400;
+  }
+
+  .grid {
+    padding: 50px !important;
   }
 </style>

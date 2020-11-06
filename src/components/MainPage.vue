@@ -1,6 +1,9 @@
 <template>
   <div>
-    <h1>Hello {{ this.$store.state.nameFirst }}</h1>    
+    <h1>Hello <span>{{ this.$store.state.nameFirst }}</span></h1>    
+    <p>Welcome to your booking assistant.</p>
+    <p>A quick reminder that there are <strong>only 20 spots per day available</strong>.</p>
+    <p>Please choose the days you'd like to come to the office below.</p>
     
     <div class="booking__wrapper">
 
@@ -8,8 +11,8 @@
         <h2>{{ bookingDay.day }}</h2>
         <p class="booking__checked-in">Checked in: {{ bookingDay.people.filter(booking => { return booking.checkedIn === true}).length }} / {{ bookingDay.people.length }} (Max 20)</p>
 
-        <div class='ui basic content center aligned segment'>
-          <button class='ui basic button icon' v-on:click="createBooking(index)">
+        <div class='ui basic content center aligned'>
+          <button class='ui basic button icon button--check-in' v-on:click="createBooking(index)">
             <i class='plus icon'></i>
             Create booking
           </button>    
@@ -57,10 +60,10 @@
             </div>
           </div>
           <div class='ui bottom attached green basic button' v-show="!person.isEditing && person.checkedIn" disabled>
-              Checked in
+              Checked in <i class="calendar check icon"></i>
           </div>
           <div class='ui bottom attached red basic button' v-on:click="checkIn(index, personIndex)" v-show="!person.isEditing && !person.checkedIn">
-              Not checked in yet
+              Not checked in yet <i class="calendar outline icon"></i>
           </div>
         </div>       
       </div>
@@ -124,7 +127,6 @@ export default {
   data() {
     return {      
       bookings: [{
-        id: 0,
         day: 'Monday',        
         people: [{
           nameFirst: 'Matt',
@@ -146,8 +148,34 @@ export default {
           checkedIn: false
         }]
       },{
-        id: 1,
         day: 'Tuesday',
+        people: [{
+          nameFirst: 'John',
+          nameLast: 'Sheard',
+          floor: '2',
+          isEditing: false,
+          checkedIn: false
+        }]
+      },{
+        day: 'Wednesday',
+        people: [{
+          nameFirst: 'John',
+          nameLast: 'Sheard',
+          floor: '2',
+          isEditing: false,
+          checkedIn: false
+        }]
+      },{
+        day: 'Thursday',
+        people: [{
+          nameFirst: 'John',
+          nameLast: 'Sheard',
+          floor: '2',
+          isEditing: false,
+          checkedIn: false
+        }]
+      },{
+        day: 'Friday',
         people: [{
           nameFirst: 'John',
           nameLast: 'Sheard',
@@ -162,15 +190,76 @@ export default {
 </script>
 
 <style scoped>
-  .booking__checked-in,
-  h1,
-  h2 {
-    text-align: center;
+  .booking__wrapper {    
+    border-top: 1px solid gainsboro;
+    display: flex;
+    margin-top: 50px;    
+    width: 100%;
   }
 
-  .booking__wrapper {
-    display: flex;
-    justify-content: space-between;
+  .booking__day {
+    border-right: 1px solid gainsboro;
+    margin-right: 20px;
+    padding-right: 20px;
+    padding-top: 10px;  
+  }
+
+  .booking__day:last-child {
+    border-right: 0; 
+  }
+
+  .button {
+    border-radius: 0 !important;
+  }
+
+  .ui .button.button--check-in {
+    background: #91b496 !important;
+    color: #fff !important;
+    width: 100%;
+  }
+
+  .ui .button.button--check-in:hover {
+    background: #77947b !important;
+  }
+
+  .card {
+    border-radius: 0 !important;
+        box-shadow: 0 1px 3px 0 #D4D4D5, 0 0 0 1px #000;
+  }
+
+  .ui.card > :last-child {
+    border-radius: 0 !important;
+  }
+
+  .calendar {
+    margin-left: 2px !important;
+  }
+
+  .ui.basic.green.button {
+    box-shadow: 0 0 0 1px #77947b inset !important;
+    color: #77947b !important;
+  }
+
+  .column h1 {
+    font-size: 70px;
+    line-height: 1.3
+  }
+
+  .column p {
+    font-size: 16px;
+  }
+
+  .column h1:before {
+    content: '';
+    width: 100px;
+    height: 3px;
+    background-color: #000;
+    position: absolute;
+    top: 0;
+  }
+
+  .column h1 span {
+    color: #91b496;
   }
 </style>
 
